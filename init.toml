@@ -1,0 +1,124 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "nord"
+    background = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+    buffer_index_type = 4
+    enable_tabline_filetype_icon = true
+    enable_statusline_display_mode = false
+
+# Enable autocomplete layer
+[[layers]]
+name = 'autocomplete'
+auto-completion-return-key-behavior = "complete"
+auto-completion-tab-key-behavior = "smart"
+
+[[layers]]
+name = 'shell'
+default_position = 'top'
+default_height = 30
+
+[[layers]]
+name = 'colorscheme'
+enable = true
+
+[[layers]]
+name = 'ctrlp'
+enable = true
+
+[[layers]]
+name = 'lang#c'
+enable = true
+
+[[layers]]
+name = 'lang#csharp'
+enable = true
+
+[[layers]]
+name = 'lang#elixir'
+enable = true
+
+[[layers]]
+name = 'lang#go'
+enable = true
+
+[[layers]]
+name = 'lang#haskell'
+enable = true
+
+[[layers]]
+name = 'lang#html'
+enable = true
+
+[[layers]]
+name = 'lang#java'
+enable = true
+
+[[layers]]
+name = 'lang#javascript'
+enable = true
+
+[[layers]]
+name = 'lang#lisp'
+enable = true
+
+[[layers]]
+name = 'lang#markdown'
+enable = true
+
+[[layers]]
+name = 'lang#ocaml'
+enable = true
+
+[[layers]]
+name = 'lang#php'
+enable = true
+
+[[layers]]
+name = 'lang#python'
+enable = true
+
+[[layers]]
+name = 'lang#ruby'
+enable = true
+
+[[layers]]
+name = 'lang#typescript'
+enable = true
+
+[[layers]]
+name = 'lang#vim'
+enable = true
+
+[[layers]]
+name = 'ui'
+enable = true
+
+[[layers]]
+name = 'git'
+enable = true
+
+[[layers]]
+name = 'github'
+enable = true
+
+[[layers]]
+name = 'denite'
+enable = true
