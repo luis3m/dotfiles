@@ -79,6 +79,10 @@ echo -e "=========================================\n"
 
 sudo npm i -g elm --unsafe-perm=true --allow-root
 sudo npm install -g elm-format --allow-root --unsafe-perm=true
+sudo npm install -g elm-test --allow-root --unsafe-perm=true
+sudo npm install -g elm-oracle
+elm-package install
+
 
 echo -e "\n========================================="
 echo -e "    installing emacs"
@@ -147,6 +151,8 @@ echo -e "    installing SpaceVim"
 echo -e "=========================================\n"
 
 curl -sLf https://spacevim.org/install.sh | bash
+sudo apt install cmake
+# ~/.SpaceVim.d/plugged/youcompleteme/install.py
 
 echo -e "\n========================================="
 echo -e "    installing vim-plug"
