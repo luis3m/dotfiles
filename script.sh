@@ -66,10 +66,19 @@ sudo apt update
 sudo apt install dotnet-sdk-2.1.105
 
 echo -e "\n========================================="
+echo -e "    installing Haskell"
+echo -e "=========================================\n"
+
+sudo apt install haskell-platform
+sudo apt install libtinfo-dev
+sudo apt install zlib1g-dev
+
+echo -e "\n========================================="
 echo -e "    installing Elm"
 echo -e "=========================================\n"
 
-sudo npm install -g elm
+sudo npm i -g elm --unsafe-perm=true --allow-root
+sudo npm install -g elm-format --allow-root --unsafe-perm=true
 
 echo -e "\n========================================="
 echo -e "    installing emacs"
