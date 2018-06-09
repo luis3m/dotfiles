@@ -30,6 +30,48 @@ sudo apt install -y nodejs
 sudo apt install -y build-essential
 
 echo "\n========================================="
+echo "    installing gulp"
+echo "=========================================\n"
+
+sudo npm install -g gulp
+
+echo "\n========================================="
+echo "    installing Java"
+echo "=========================================\n"
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo add-apt-repository ppa:linuxuprising/java
+sudo apt update
+sudo apt install oracle-java8-set-default
+sudo apt-get install oracle-java10-installer
+sudo apt-get install oracle-java10-set-default
+
+echo "\n========================================="
+echo "    installing SBT"
+echo "=========================================\n"
+
+echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+sudo apt update
+sudo apt install sbt
+
+echo "\n========================================="
+echo "    installing dotnet core"
+echo "=========================================\n"
+
+sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
+sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+sudo apt update
+sudo apt install dotnet-sdk-2.1.105
+
+echo "\n========================================="
+echo "    installing Elm"
+echo "=========================================\n"
+
+sudo npm install -g elm
+
+echo "\n========================================="
 echo "    installing emacs"
 echo "=========================================\n"
 
@@ -44,7 +86,7 @@ echo "=========================================\n"
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 echo "\n========================================="
-echo "    installing fonts to $FONT_HOME"
+echo "    installing fonts"
 echo "=========================================\n"
 
 FONT_HOME=~/.local/share/fonts
