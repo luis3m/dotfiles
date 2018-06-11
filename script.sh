@@ -29,6 +29,8 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo apt install -y build-essential
 
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
 echo -e "\n========================================="
 echo -e "    installing gulp"
 echo -e "=========================================\n"

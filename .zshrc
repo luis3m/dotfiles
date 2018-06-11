@@ -29,3 +29,5 @@ if which tmux >/dev/null 2>&1; then
     done
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
