@@ -100,6 +100,12 @@ sudo npm install -g elm-oracle
 elm-package install
 
 echo -e "\n========================================="
+echo -e "    installing postgresql"
+echo -e "=========================================\n"
+
+sudo apt install postgresql-10
+
+echo -e "\n========================================="
 echo -e "    installing emacs"
 echo -e "=========================================\n"
 
