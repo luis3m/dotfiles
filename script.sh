@@ -66,6 +66,22 @@ sudo apt update
 sudo apt install dotnet-sdk-2.1.105
 
 echo -e "\n========================================="
+echo -e "    installing mono"
+echo -e "=========================================\n"
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+sudo apt update
+sudo apt install mono-devel
+sudo apt install libunwind8
+
+echo -e "\n========================================="
+echo -e "    installing fsharp"
+echo -e "=========================================\n"
+
+sudo apt install fsharp
+
+echo -e "\n========================================="
 echo -e "    installing Haskell"
 echo -e "=========================================\n"
 
@@ -82,7 +98,6 @@ sudo npm install -g elm-format --allow-root --unsafe-perm=true
 sudo npm install -g elm-test --allow-root --unsafe-perm=true
 sudo npm install -g elm-oracle
 elm-package install
-
 
 echo -e "\n========================================="
 echo -e "    installing emacs"
