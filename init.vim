@@ -12,6 +12,6 @@ call plug#end()
 imap fd <Esc>
 
 let g:elm_detailed_complete = 1
-"let g:deoplete#disable_auto_complete=1
+autocmd FileType elm let g:deoplete#disable_auto_complete = 1
 let g:spacevim_enable_ycm = 1
 let g:ycm_semantic_triggers = { 'elm' : ['.'] }
