@@ -56,16 +56,21 @@ echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.li
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
 sudo apt update
 sudo apt install sbt
+mkdir ~/.sbt/1.0/plugins
+echo 'addSbtPlugin("org.ensime" % "sbt-ensime" % "2.5.1")' > ~/.sbt/1.0/plugins/plugins.sbt
 
 echo -e "\n========================================="
 echo -e "    installing dotnet core"
 echo -e "=========================================\n"
 
-sudo apt-key adv --keyserver packages.microsoft.com --recv-keys EB3E94ADBE1229CF
-sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
-sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.asc.gpg
+sudo mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/prod.list
+sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+
+sudo apt install apt-transport-https
 sudo apt update
-sudo apt install dotnet-sdk-2.1.105
+sudo apt install dotnet-sdk-2.1
 
 echo -e "\n========================================="
 echo -e "    installing mono"
@@ -168,6 +173,9 @@ sudo apt update
 sudo apt install neovim
 sudo apt install python-dev python-pip python3-dev python3-pip
 pip3 install neovim --upgrade
+pip install websocket-client sexpdata
+pip3 install websocket-client sexpdata
+npm install -g neovim
 
 echo -e "\n========================================="
 echo -e "    installing SpaceVim"
