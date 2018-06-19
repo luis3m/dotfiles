@@ -192,6 +192,20 @@ echo -e "=========================================\n"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+
+echo -e "\n========================================="
+echo -e "    installing Omnisharp Roslyn Http"
+echo -e "=========================================\n"
+
+wget https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.31.1/omnisharp.http-mono.tar.gz
+sudo mv ./omnisharp.http-mono.tar.gz ~/.SpaceVim.d/omnisharp.http-mono.tar.gz
+cd ~/.SpaceVim.d/
+gunzip omnisharp.http-mono.tar.gz
+mkdir omnisharp-server
+tar -C ./omnisharp-server -xvf omnisharp.http-mono.tar
+rm omnisharp.http-mono.tar
+cd
+
 echo -e "\n========================================="
 echo -e "    installing powerline fonts"
 echo -e "=========================================\n"
