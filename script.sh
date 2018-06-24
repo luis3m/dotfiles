@@ -6,6 +6,12 @@ cd
 sudo apt install git
 
 echo -e "\n========================================="
+echo -e "    installing meld"
+echo -e "=========================================\n"
+
+sudo apt install meld
+
+echo -e "\n========================================="
 echo -e "    generating ssh key"
 echo -e "=========================================\n"
 
