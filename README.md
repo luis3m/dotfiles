@@ -24,6 +24,7 @@ Configuration files for tmux, zsh, emacs and vi. Also script for Ubuntu to insta
 * fonts
 * zsh
 * oh-my-zsh
+* thefuck
 * nord theme on gnome terminal
 * neovim
 * spacevim

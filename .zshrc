@@ -10,7 +10,13 @@ COMPLETION_WAITING_DOTS="true"
 
 HIST_STAMPS="yyyy-mm-dd"
 
-plugins=(git)
+plugins=(
+  git
+  ubuntu
+  thefuck
+  vi-mode
+  alias-tips
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -19,7 +25,8 @@ alias cgit='cd $GITFOLDER'
 alias reboot='sudo shutdown -r now'
 alias shutdown='sudo shutdown -h now'
 alias suspend='sudo systemctl suspend'
-alias enw='TERM=xterm-256color emacs -nw'
+alias ect="emacsclient -t -a ''"
+alias enw="emacs -nw"
 
 if which tmux >/dev/null 2>&1; then
     test -z ${TMUX} && tmux

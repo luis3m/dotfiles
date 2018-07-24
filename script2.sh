@@ -5,6 +5,13 @@ print_command()
   echo -e "=========================================\n"
 }
 
+cd
+
+print_command alias-tips
+cd $ZSH/plugins
+git clone https://github.com/djui/alias-tips.git
+cd
+
 print_command nord theme on terminal
 sudo apt install dconf-cli
 git clone https://github.com/arcticicestudio/nord-gnome-terminal.git
@@ -31,6 +38,8 @@ print_command vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+print_command thefuck
+sudo pip3 install thefuck
 
 print_command Omnisharp Roslyn Http
 wget https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.31.1/omnisharp.http-mono.tar.gz
