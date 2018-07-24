@@ -28,6 +28,8 @@ Configuration files for tmux, zsh, emacs and vi. Also script for Ubuntu to insta
 * compleat
 * fasd
 * zsh-autosuggestions
+* fzf
+* zsh-fuzzy-search-and-edit
 * nord theme on gnome terminal
 * neovim
 * spacevim

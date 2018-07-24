@@ -26,6 +26,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source $ZSH/plugins/zsh-async/async.zsh
+source $ZSH/plugins/zsh-fuzzy-search-and-edit/plugin.zsh
 
 alias zshrc='nvim ~/.zshrc'
 alias cgit='cd $GITFOLDER'
@@ -45,5 +47,8 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bindkey '^f' autosuggest-accept
+bindkey '^ sgp' fuzzy-search-and-edit
+

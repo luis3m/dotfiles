@@ -32,6 +32,16 @@ cd
 print_command zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH/plugins/zsh-autosuggestions
 
+print_command fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+print_command zsh-async
+git clone https://github.com/mafredri/zsh-async $ZSH/plugins/zsh-async
+
+print_command zsh-fuzzy-search-and-edit
+git clone https://github.com/seletskiy/zsh-fuzzy-search-and-edit $ZSH/plugins/zsh-fuzzy-search-and-edit
+
 print_command nord theme on terminal
 sudo apt install dconf-cli
 git clone https://github.com/arcticicestudio/nord-gnome-terminal.git
