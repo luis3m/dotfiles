@@ -4,9 +4,10 @@ echo -e "=========================================\n"
 
 cd
 git clone https://github.com/fsharp/FsAutoComplete
-cd FSAutoComplete
+cd FsAutoComplete
 ./build.sh
 sudo rm -r ~/.emacs.d/elpa/fsharp-*/bin/
-sudo mv src/FSAutoComplete/bin/Debug/* ~/.emacs.d/elpa/fsharp-*/
+sudo mv src/FsAutoComplete/bin/Debug/* ~/.emacs.d/elpa/fsharp-mode-*/bin/
 cd ..
-sudo rm -f FSAutoComplete/
+sudo rm -r FsAutoComplete/
+cd

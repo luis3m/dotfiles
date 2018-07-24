@@ -15,9 +15,12 @@ imap fd <Esc>
 
 autocmd BufWritePost *.scala silent :EnTypeCheck
 
-
 let g:OmniSharp_server_path = '/home/elon3m/.SpaceVim.d/omnisharp-server/OmniSharp.exe'
 let g:OmniSharp_server_use_mono = 1
+
+let g:fsharp_completion_helptext = 1
+let g:fsharpbinding_debug = 1
+let g:fsharp_xbuild_path = "/usr/bin/msbuild"
 
 let g:elm_detailed_complete = 1
 autocmd FileType elm let g:deoplete#disable_auto_complete = 1
