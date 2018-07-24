@@ -12,6 +12,16 @@ cd $ZSH/plugins
 git clone https://github.com/djui/alias-tips.git
 cd
 
+print_command stack
+curl -sSL https://get.haskellstack.org/ | sh
+
+print_command compleat
+git clone git://github.com/mbrubeck/compleat.git
+cd compleat
+make install
+cd ..
+sudo rm -r compleat
+
 print_command nord theme on terminal
 sudo apt install dconf-cli
 git clone https://github.com/arcticicestudio/nord-gnome-terminal.git

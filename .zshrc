@@ -16,6 +16,7 @@ plugins=(
   thefuck
   vi-mode
   alias-tips
+  compleat
 )
 
 source $ZSH/oh-my-zsh.sh
