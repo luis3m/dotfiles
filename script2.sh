@@ -1,22 +1,17 @@
-echo -e "\n========================================="
-echo -e "    installing oh-my-zsh"
-echo -e "=========================================\n"
+print_command()
+{
+  echo -e "\n========================================="
+  echo -e "    installing $@"
+  echo -e "=========================================\n"
+}
 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-echo -e "\n========================================="
-echo -e "    installing nord theme on terminal"
-echo -e "=========================================\n"
-
+print_command nord theme on terminal
 sudo apt install dconf-cli
 git clone https://github.com/arcticicestudio/nord-gnome-terminal.git
 nord-gnome-terminal/src/nord.sh
 sudo rm -r nord-gnome-terminal/
 
-echo -e "\n========================================="
-echo -e "    installing Neovim"
-echo -e "=========================================\n"
-
+print_command Neovim
 sudo apt install software-properties-common
 sudo apt-add-repository ppa:neovim-ppa/stable
 sudo apt update
@@ -27,26 +22,17 @@ pip install websocket-client sexpdata
 pip3 install websocket-client sexpdata
 npm install -g neovim
 
-echo -e "\n========================================="
-echo -e "    installing SpaceVim"
-echo -e "=========================================\n"
-
+print_command SpaceVim
 curl -sLf https://spacevim.org/install.sh | bash
 sudo apt install cmake
 # ~/.SpaceVim.d/plugged/youcompleteme/install.py
 
-echo -e "\n========================================="
-echo -e "    installing vim-plug"
-echo -e "=========================================\n"
-
+print_command vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 
-echo -e "\n========================================="
-echo -e "    installing Omnisharp Roslyn Http"
-echo -e "=========================================\n"
-
+print_command Omnisharp Roslyn Http
 wget https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.31.1/omnisharp.http-mono.tar.gz
 sudo mv ./omnisharp.http-mono.tar.gz ~/.SpaceVim.d/omnisharp.http-mono.tar.gz
 cd ~/.SpaceVim.d/
@@ -56,17 +42,11 @@ tar -C ./omnisharp-server -xvf omnisharp.http-mono.tar
 rm omnisharp.http-mono.tar
 cd
 
-echo -e "\n========================================="
-echo -e "    installing powerline fonts"
-echo -e "=========================================\n"
-
+print_command powerline fonts
 sudo apt install fonts-powerline
 fc-cache -vf
 
-echo -e "\n========================================="
-echo -e "    installing tmux"
-echo -e "=========================================\n"
-
+print_command tmux
 sudo apt install -y automake
 sudo apt install -y pkg-config
 sudo apt install -y libevent-dev
@@ -88,26 +68,17 @@ cd -
 
 rm -fr /tmp/tmux
 
-echo -e "\n========================================="
-echo -e "    installing PathPicker"
-echo -e "=========================================\n"
-
+print_command PathPicker
 cd /usr/local/
 sudo git clone https://github.com/facebook/PathPicker.git
 cd PathPicker/
 sudo ln -s "$(pwd)/fpp" /usr/local/bin/fpp
 cd
 
-echo -e "\n========================================="
-echo -e "    installing gnome-tweak-tool"
-echo -e "=========================================\n"
-
+print_command gnome-tweak-tool
 sudo apt install gnome-tweak-tool
 
-echo -e "\n========================================="
-echo -e "    installing dotfiles"
-echo -e "=========================================\n"
-
+print_command dotfiles
 mkdir git
 cd git
 git clone https://github.com/luis3m/dotfiles.git
@@ -126,8 +97,3 @@ mkdir ~/.SpaceVim.d
 sudo ln -s $PWD/init.toml ~/.SpaceVim.d/init.toml
 sudo ln -s $PWD/init.vim ~/.SpaceVim/init.vim
 cd
-
-echo -e "\n========================================="
-echo -e "    Finished !"
-echo -e "=========================================\n"
-
