@@ -138,6 +138,9 @@ echo -e "    installing spacemacs"
 echo -e "=========================================\n"
 
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+cd ~/.emacs.d
+git checkout origin develop
+cd
 
 echo -e "\n========================================="
 echo -e "    installing fonts"
