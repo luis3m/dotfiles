@@ -27,6 +27,7 @@ Configuration files for tmux, zsh, emacs and vi. Also script for Ubuntu to insta
 * thefuck
 * compleat
 * fasd
+* zsh-autosuggestions
 * nord theme on gnome terminal
 * neovim
 * spacevim

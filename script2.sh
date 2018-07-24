@@ -29,6 +29,9 @@ cd fasd
 sudo make install
 cd
 
+print_command zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH/plugins/zsh-autosuggestions
+
 print_command nord theme on terminal
 sudo apt install dconf-cli
 git clone https://github.com/arcticicestudio/nord-gnome-terminal.git
