@@ -22,6 +22,13 @@ make install
 cd ..
 sudo rm -r compleat
 
+print_command fasd
+cd /usr/local/
+sudo git clone https://github.com/clvv/fasd
+cd fasd
+sudo make install
+cd
+
 print_command nord theme on terminal
 sudo apt install dconf-cli
 git clone https://github.com/arcticicestudio/nord-gnome-terminal.git

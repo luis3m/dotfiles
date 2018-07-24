@@ -17,6 +17,11 @@ plugins=(
   vi-mode
   alias-tips
   compleat
+  copydir
+  copyfile
+  history
+  fasd
+  jump
 )
 
 source $ZSH/oh-my-zsh.sh
