@@ -37,6 +37,7 @@ Configuration files for tmux, zsh, emacs and vi. Also script for Ubuntu to insta
 * omnisharp
 * powerline fonts
 * tmux
+* tree
 * pathpicker
 * gnome-tweak-tool
 * Move dotfiles

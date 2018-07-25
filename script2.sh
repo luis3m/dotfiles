@@ -114,6 +114,12 @@ cd PathPicker/
 sudo ln -s "$(pwd)/fpp" /usr/local/bin/fpp
 cd
 
+print_command tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+print_command tree
+sudo apt get install tree
+
 print_command gnome-tweak-tool
 sudo apt install gnome-tweak-tool
 
