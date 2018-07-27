@@ -47,3 +47,4 @@ Configuration files for tmux, zsh, emacs and vi. Also script for Ubuntu to insta
 * Run both script files
 * Run FsAutoComplete file
 * Remove scrollbar from gnome terminal
+* Make Caps Lock ctrl
