@@ -118,7 +118,7 @@ print_command tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 print_command tree
-sudo apt get install tree
+sudo apt install tree
 
 print_command gnome-tweak-tool
 sudo apt install gnome-tweak-tool
