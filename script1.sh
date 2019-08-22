@@ -85,7 +85,7 @@ sudo npm install -g elm-oracle
 elm-package install
 
 print_command postgresql
-sudo apt install postgresql-10
+sudo apt install postgresql-11
 
 print_command emacs
 sudo add-apt-repository ppa:kelleyk/emacs
