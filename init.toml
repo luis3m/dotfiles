@@ -122,3 +122,15 @@ enable = true
 [[layers]]
 name = 'denite'
 enable = true
+
+[[layers]]
+name = 'lang#elm'
+enable = true
+
+[[layers]]
+name = 'lang#fsharp'
+enable = true
+
+[[custom_plugins]]
+  name = "mhartington/oceanic-next"
+  merged = 0

@@ -31,7 +31,7 @@ values."
      version-control
      sql
      )
-   dotspacemacs-additional-packages '(xclip)
+   dotspacemacs-additional-packages '(xclip lsp-ui lsp-mode company-lsp lsp-treemacs helm-lsp dap-mode yasnippet-snippets use-package)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only))
@@ -130,9 +130,69 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (require 'xclip)
   (xclip-mode 1)
+
+  (use-package company
+    :ensure t
+    :diminish t
+    :init
+    (add-hook 'after-init-hook 'global-company-mode)
+    (add-hook 'elm-mode-hook 'company-mode)
+    :config
+    (setq company-idle-delay 0.02
+          company-minimum-prefix-length 2
+          company-echo-delay 0
+          company-dabbrev-downcase nil
+          company-dabbrev-code-everywhere t
+          company-dabbrev-code-modes t
+          company-dabbrev-code-ignore-case t
+          company-tooltip-align-annotations t
+          company-transformers '(company-sort-prefer-same-case-prefix)))
+
+  (defvar company-mode/enable-yas t "Enable yasnippet for all backends.")
+
+  (defun company-mode/backend-with-yas (backend)
+    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+
+  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp
+    :hook (elm-mode . lsp)
+    :config
+    (setq lsp-prefer-flymake nil
+          lsp-enable-symbol-highlighting nil
+          lsp-enable-snippet nil
+          lsp-ui-sideline-enable nil
+          lsp-ui-flycheck-enable t))
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+
+  (use-package company-lsp
+    :ensure t
+    :commands company-lsp
+    :config
+    (push '(company-lsp :with company-yasnippet) company-backends)
+    ;;(push 'company-lsp company-backends)
+    )
+
+  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+  (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+  (use-package dap-mode)
+
+  (add-hook 'elm-mode-hook (lambda () (defalias 'company-elm 'company-lsp)))
   )
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#080808" "#d70000" "#67b11d" "#875f00" "#268bd2" "#af00df" "#00ffff" "#b2b2b2"])
  '(custom-safe-themes
@@ -141,7 +201,11 @@ you should place your code here."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (xclip sql-indent noflet ensime sbt-mode unfill mwim helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company-emacs-eclim company-cabal clojure-snippets auto-yasnippet ac-ispell web-beautify smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp shut-up auto-complete magit-gitflow livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc intero htmlize hlint-refactor hindent helm-hoogle helm-gitignore haskell-snippets gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fsharp-mode company-quickhelp flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor eclim diff-hl csharp-mode company-ghci company-ghc ghc company haskell-mode coffee-mode cmm-mode auto-dictionary clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode scala-mode elm-mode mmm-mode markdown-toc markdown-mode gh-md solarized-theme nord-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (yasnippet-snippets dap-mode bui tree-mode helm-lsp lsp-treemacs treemacs pfuture lsp-ui company-lsp ht lsp-mode transient reformatter lv sesman parseedn parseclj a xclip sql-indent noflet ensime sbt-mode unfill mwim helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company-emacs-eclim company-cabal clojure-snippets auto-yasnippet ac-ispell web-beautify smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp shut-up auto-complete magit-gitflow livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc intero htmlize hlint-refactor hindent helm-hoogle helm-gitignore haskell-snippets gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fsharp-mode company-quickhelp flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor eclim diff-hl csharp-mode company-ghci company-ghc ghc company haskell-mode coffee-mode cmm-mode auto-dictionary clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode scala-mode elm-mode mmm-mode markdown-toc markdown-mode gh-md solarized-theme nord-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 

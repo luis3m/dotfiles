@@ -84,6 +84,8 @@ sudo npm install -g elm-test --allow-root --unsafe-perm=true
 sudo npm install -g elm-oracle
 elm-package install
 
+sudo npm install -g @elm-tooling/elm-language-server
+
 print_command postgresql
 sudo apt install postgresql-11
 
