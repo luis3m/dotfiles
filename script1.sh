@@ -26,6 +26,9 @@ xclip -sel clip < ~/.ssh/id_rsa.pub
 print_command curl
 sudo apt install curl
 
+print_command ag
+sudo apt install silversearcher-ag
+
 print_command NodeJs
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install -y nodejs
