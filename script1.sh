@@ -95,7 +95,7 @@ sudo apt install postgresql-11
 print_command emacs
 sudo add-apt-repository ppa:kelleyk/emacs
 sudo apt update
-sudo apt install emacs25
+sudo apt install emacs26
 
 print_command spacemacs
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
