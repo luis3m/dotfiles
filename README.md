@@ -49,3 +49,4 @@ Configuration files for tmux, zsh, emacs and vi. Also script for Ubuntu to insta
 * Run FsAutoComplete file
 * Remove scrollbar from gnome terminal
 * Make Caps Lock ctrl
+* Check vscode-theme is being moved correctly
