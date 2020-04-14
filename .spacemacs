@@ -31,7 +31,7 @@ values."
      version-control
      sql
      )
-   dotspacemacs-additional-packages '(xclip lsp-ui lsp-mode company-lsp lsp-treemacs helm-lsp dap-mode yasnippet-snippets use-package multi-term eterm-256color posframe)
+   dotspacemacs-additional-packages '(xclip lsp-ui lsp-mode company-lsp lsp-treemacs helm-lsp dap-mode yasnippet-snippets use-package multi-term eterm-256color posframe git-gutter+)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(ensime vscode-dark-theme)
    dotspacemacs-install-packages 'used-only))
@@ -144,6 +144,8 @@ you should place your code here."
   (setq explicit-shell-file-name "/bin/zsh")
 
   (server-start)
+
+  (global-git-gutter+-mode)
 
   (add-hook 'term-mode-hook
     (lambda () (define-key term-raw-map (kbd "C-y") 'term-paste)))
