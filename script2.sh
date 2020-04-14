@@ -123,17 +123,34 @@ sudo apt install tree
 print_command gnome-tweak-tool
 sudo apt install gnome-tweak-tool
 
+print_command metals
+
+curl -L -o coursier https://git.io/coursier-cli
+cd
+chmod +x coursier
+sudo sh ./coursier bootstrap \
+     --java-opt -Xss4m \
+     --java-opt -Xms100m \
+     --java-opt -Dmetals.client=emacs \
+     org.scalameta:metals_2.12:0.8.4 \
+     -r bintray:scalacenter/releases \
+     -r sonatype:snapshots \
+     -o /usr/local/bin/metals-emacs -f
+rm coursier
+
 print_command dotfiles
 mkdir git
 cd git
 git clone https://github.com/luis3m/dotfiles.git
 cd dotfiles
+mkdir -p ~/.emacs.d/private/themes
 sudo mv ~/.tmux.conf ~/.BACKUP.tmux.conf
 sudo mv ~/.zshrc ~/.BACKUP.zshrc
 sudo mv ~/.oh-my-zsh/themes/agnoster-custom.zsh-theme ~/.oh-my-zsh/themes/agnoster-custom-BACKUP.zsh-theme
 sudo mv ~/.spacemacs ~/.BACKUP.spacemacs
 sudo mv ~/.SpaceVim.d/init.toml ~/.SpaceVim.d/BACKUP-init.toml
 sudo mv ~/.SpaceVim/init.vim ~/.SpaceVim/BACKUP-init.vim
+sudo ln -s $PWD/.vscode-dark-theme.el ~/.emacs.d/private/themes/.vscode-dark-theme.el
 sudo ln -s $PWD/.tmux.conf ~/.tmux.conf
 sudo ln -s $PWD/.zshrc ~/.zshrc
 sudo ln -s $PWD/agnoster-custom.zsh-theme ~/.oh-my-zsh/themes/agnoster-custom.zsh-theme
