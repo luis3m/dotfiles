@@ -154,6 +154,21 @@ you should place your code here."
   (add-hook 'term-mode-hook
     (lambda () (setq-local global-hl-line-mode nil)))
 
+  (add-hook 'scala-mode-hook
+            (lambda ()
+              (push '("<=" . ?≤) prettify-symbols-alist)
+              (push '(">=" . ?≥) prettify-symbols-alist)
+              (push '("->" . ?→) prettify-symbols-alist)
+              (push '("<-" . ?←) prettify-symbols-alist)
+              (push '("~>" . ?⇝) prettify-symbols-alist)
+              (push '("<~" . ?⇜) prettify-symbols-alist)
+              (push '(">>=" . ?⤜) prettify-symbols-alist)
+              (push '("*>" . ?≫) prettify-symbols-alist)
+              (push '("=>" . ?⇒) prettify-symbols-alist)
+              (push '("!=" . ?≠) prettify-symbols-alist)
+              (prettify-symbols-mode)
+              ))
+
   (use-package company
     :ensure t
     :diminish t
@@ -225,8 +240,6 @@ you should place your code here."
   (use-package company-lsp
     :ensure t
     :commands company-lsp
-    :config
-    (push '(company-lsp :with company-yasnippet))
     )
 
   (use-package helm-lsp :commands helm-lsp-workspace-symbol)
