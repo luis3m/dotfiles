@@ -30,9 +30,9 @@ values."
      syntax-checking
      version-control
      sql
-     threemacs
+     treemacs
      )
-   dotspacemacs-additional-packages '(xclip lsp-ui lsp-mode company-lsp lsp-treemacs helm-lsp dap-mode yasnippet-snippets use-package multi-term eterm-256color posframe git-gutter+)
+   dotspacemacs-additional-packages '(xclip lsp-ui lsp-mode company-lsp lsp-treemacs helm-lsp dap-mode yasnippet-snippets use-package multi-term eterm-256color posframe git-gutter+ workgroups2)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '(ensime vscode-dark-theme)
    dotspacemacs-install-packages 'used-only))
@@ -121,8 +121,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (require 'ob-sql)
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((sql . t)))
-  )
+   '((sql . t))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -148,6 +147,8 @@ you should place your code here."
 
   (global-git-gutter+-mode)
 
+  (workgroups-mode 1)
+
   (add-hook 'term-mode-hook
     (lambda () (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
@@ -166,13 +167,45 @@ you should place your code here."
               (push '("*>" . ?≫) prettify-symbols-alist)
               (push '("=>" . ?⇒) prettify-symbols-alist)
               (push '("!=" . ?≠) prettify-symbols-alist)
-              (prettify-symbols-mode)
-              ))
+              (prettify-symbols-mode)))
 
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C->") 'mc/skip-to-next-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/skip-to-next-like-this)
+
+  (setq which-key-allow-multiple-replacements nil)
+  (setq wg-session-load-on-start t)
+  (setq wg-mode-line-display-on nil)
+
+  (spaceline-define-segment workgroups
+    "The spaceline mode for workgroups2"
+    (wg-workgroup-name (wg-current-workgroup)))
+
+  ;; Custom space-line theme
+  (apply 'spaceline--theme
+         '((persp-name
+            workgroups
+            workspace-number
+            window-number)
+           :fallback evil-state
+           :face highlight-face
+           :priority 100)
+         '((buffer-id remote-host)
+           :priority 98)
+         spacemacs-spaceline-additional-segments)
+
+  (spacemacs/set-leader-keys "n" nil)
+  (spacemacs/declare-prefix "n" "navigate workgroups")
+  (spacemacs/set-leader-keys "nc" 'wg-create-workgroup)
+  (spacemacs/set-leader-keys "nr" 'wg-rename-workgroup)
+  (spacemacs/set-leader-keys "ns" 'wg-save-session)
+  (spacemacs/set-leader-keys "nC" 'wg-open-session)
+  (spacemacs/set-leader-keys "nd" 'wg-kill-workgroup)
+  (spacemacs/set-leader-keys "nD" 'wg-kill-workgroup-and-buffers)
+  (spacemacs/set-leader-keys "nn" 'wg-switch-to-workgroup)
+  (spacemacs/set-leader-keys "nl" 'wg-switch-to-workgroup-right)
+  (spacemacs/set-leader-keys "nh" 'wg-switch-to-workgroup-right)
 
   (use-package company
     :ensure t
@@ -197,7 +230,7 @@ you should place your code here."
   (add-hook 'scala-mode-hook
       (lambda ()
        (font-lock-add-keywords nil
-        '(("\\<\\(sealed\\|final\\|implicit\\|override\\|private\\)\\>" .
+        '(("\\<\\(sealed\\|final\\|implicit\\|override\\|private\\|lazy\\)\\>" .
            font-lock-keyword-face)
           ("\\<\\(match\\|if\\|else\\|while\\|for\\|yield\\)\\>" .
            'orchid-face)
@@ -309,7 +342,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (dimmer direx multi-term ensime kaolin-themes doom-themes zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme yasnippet-snippets dap-mode bui tree-mode helm-lsp lsp-treemacs treemacs pfuture lsp-ui company-lsp ht lsp-mode transient reformatter lv sesman parseedn parseclj a xclip sql-indent noflet sbt-mode unfill mwim helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company-emacs-eclim company-cabal clojure-snippets auto-yasnippet ac-ispell web-beautify smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp shut-up auto-complete magit-gitflow livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc intero htmlize hlint-refactor hindent helm-hoogle helm-gitignore haskell-snippets gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fsharp-mode company-quickhelp flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor eclim diff-hl csharp-mode company-ghci company-ghc ghc company haskell-mode coffee-mode cmm-mode auto-dictionary clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode scala-mode elm-mode mmm-mode markdown-toc markdown-mode gh-md solarized-theme nord-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (workgroups2 workgroups tabbar elscreen dimmer direx multi-term ensime kaolin-themes doom-themes zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme yasnippet-snippets dap-mode bui tree-mode helm-lsp lsp-treemacs treemacs pfuture lsp-ui company-lsp ht lsp-mode transient reformatter lv sesman parseedn parseclj a xclip sql-indent noflet sbt-mode unfill mwim helm-company helm-c-yasnippet fuzzy company-tern dash-functional tern company-statistics company-emacs-eclim company-cabal clojure-snippets auto-yasnippet ac-ispell web-beautify smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download omnisharp shut-up auto-complete magit-gitflow livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc intero htmlize hlint-refactor hindent helm-hoogle helm-gitignore haskell-snippets gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fsharp-mode company-quickhelp flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck-elm flycheck evil-magit magit magit-popup git-commit ghub let-alist with-editor eclim diff-hl csharp-mode company-ghci company-ghc ghc company haskell-mode coffee-mode cmm-mode auto-dictionary clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode scala-mode elm-mode mmm-mode markdown-toc markdown-mode gh-md solarized-theme nord-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
