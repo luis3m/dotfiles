@@ -53,6 +53,6 @@ bindkey '^f' autosuggest-accept
 bindkey '^ sgp' fuzzy-search-and-edit
 
 if [[ -n "$INSIDE_EMACS" ]]; then
-  alias emacs="emacsclient"
-  export EDITOR='emacsclient'
+  alias emacs="emacsclient -n"
+  export EDITOR='emacsclient -n'
 fi
